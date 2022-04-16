@@ -15,10 +15,12 @@ public class StudentServiceImpl implements StudentService{
     private StudentRepository studentRepository;
 
     @Override
-    public String deleteById(Integer id) {
+    public  List<Student> deleteById(Integer id) {
+        List<Student> students = studentRepository.findAll();
         Student student = studentRepository.findById(id).orElseThrow();
         studentRepository.delete(student);
-        return "delete success";
+        students.remove(student);
+        return students;
     }
 
     @Override
@@ -27,9 +29,10 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Integer saveStudent(Student student) {
-
+    public List<Student> saveStudent(Student student) {
+        List<Student> students = studentRepository.findAll();
         Student newStudent= studentRepository.save(student);
-        return newStudent.getId();
+        students.add(student);
+        return students;
     }
 }

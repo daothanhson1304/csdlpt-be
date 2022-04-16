@@ -3,13 +3,22 @@ package com.sondt.studentsystem.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="student")
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private int age;
     private String name;
     private String address;
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public int getAge() {
         return age;
@@ -18,8 +27,6 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
-
-    private int age;
 
     public Student() {
 

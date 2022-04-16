@@ -15,10 +15,10 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/add")
-    public Integer add(@RequestBody Student student){
-
-        Integer id =studentService.saveStudent(student);
-        return id;
+    public List<Student> add(@RequestBody Student student){
+        System.out.println(student.getName()+"-"+student.getAddress()+"-"+student.getImage()+"-"+student.getAge());
+        List<Student> students=studentService.saveStudent(student);
+        return students;
     }
     @GetMapping("/getAll")
     public List<Student> getAllStudent(){
@@ -26,8 +26,8 @@ public class StudentController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteById(@PathVariable("id") Integer id){
-        studentService.deleteById(id);
-        return "delete success";
+    public List<Student> deleteById(@PathVariable("id") Integer id){
+        List<Student> students=studentService.deleteById(id);
+        return students;
     }
 }
